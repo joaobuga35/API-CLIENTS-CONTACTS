@@ -10,5 +10,6 @@ export class Client {
 
   constructor() {
     this.id = randomUUID();
+    this.createdAt = String(new Date());
   }
 }
