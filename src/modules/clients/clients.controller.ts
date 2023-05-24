@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  HttpCode,
 } from '@nestjs/common';
 import { ClientsService } from './clients.service';
 import { CreateClientDto } from './dto/create-client.dto';
@@ -38,6 +39,7 @@ export class ClientsController {
     return await this.clientsService.update(id, updateClientDto);
   }
 
+  @HttpCode(204)
   @Delete(':id')
   async remove(@Param('id') id: string) {
     return await this.clientsService.remove(id);
