@@ -9,7 +9,8 @@ export class ContactInMemoryRepository implements ContactRepository {
     create(data: CreateContactDto): Contact | Promise<Contact> {
         const newContacts = new Contact()
         Object.assign(newContacts,{
-          ...data
+          ...data,
+          image: data.image || null,
         })
     
         contacts.push(newContacts)
