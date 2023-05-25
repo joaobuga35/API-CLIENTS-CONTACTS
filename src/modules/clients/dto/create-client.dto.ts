@@ -3,7 +3,6 @@ import {
   IsNotEmpty,
   MinLength,
   MaxLength,
-  Matches,
   IsEmail,
 } from 'class-validator';
 import { hashSync } from 'bcryptjs';
