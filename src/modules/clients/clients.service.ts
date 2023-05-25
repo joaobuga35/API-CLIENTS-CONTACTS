@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
 import { ClientRepository } from './repositories/clients.repository';
@@ -6,23 +6,43 @@ import { ClientRepository } from './repositories/clients.repository';
 @Injectable()
 export class ClientsService {
   constructor(private clientRepository: ClientRepository) {}
-  create(createClientDto: CreateClientDto) {
-    return this.clientRepository.create(createClientDto);
+  async create(createClientDto: CreateClientDto) {
+    const client = await this.clientRepository.create(createClientDto);
+    return client;
   }
 
-  findAll() {
-    return this.clientRepository.findAll();
+  async findAll() {
+    const clients = await this.clientRepository.findAll();
+    return clients;
   }
 
-  findOne(id: string) {
-    return this.clientRepository.findOne(id);
+  async findOne(id: string) {
+    const client = await this.clientRepository.findOne(id);
+
+    if (!client) {
+      throw new NotFoundException('User not found!');
+    }
+    return client;
   }
 
-  update(id: string, updateClientDto: UpdateClientDto) {
-    return this.clientRepository.update(id, updateClientDto);
+  async update(id: string, updateClientDto: UpdateClientDto) {
+    const client = await this.clientRepository.findOne(id);
+    if (!client) {
+      throw new NotFoundException('User not found!');
+    }
+    const updateClient = await this.clientRepository.update(
+      id,
+      updateClientDto,
+    );
+    return updateClient;
   }
 
-  remove(id: string) {
-    return this.clientRepository.delete(id);
+  async remove(id: string) {
+    const client = await this.clientRepository.findOne(id);
+    if (!client) {
+      throw new NotFoundException('User not found!');
+    }
+    const removeClient = await this.clientRepository.delete(id);
+    return removeClient;
   }
 }

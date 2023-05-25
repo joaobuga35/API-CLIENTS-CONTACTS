@@ -1,9 +1,13 @@
+import { Exclude } from 'class-transformer';
 import { randomUUID } from 'crypto';
 
 export class Client {
   readonly id: string;
   name: string;
+
+  @Exclude()
   password: string;
+
   email: string;
   number: string;
   readonly createdAt: string;
