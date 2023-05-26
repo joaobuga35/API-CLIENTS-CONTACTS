@@ -2,15 +2,17 @@ import { Module } from '@nestjs/common';
 import { ContactsService } from './contacts.service';
 import { ContactsController } from './contacts.controller';
 import { ContactRepository } from './repositories/contacts.repositories';
-import { ContactInMemoryRepository } from './repositories/in-memory/contacts.in-memory.repository';
+import { ContactPrismaRepository } from './repositories/prisma/contact.prisma.repository';
+import { PrismaService } from 'src/database/prisma.service';
 
 @Module({
   controllers: [ContactsController],
   providers: [
     ContactsService,
+    PrismaService,
     {
       provide: ContactRepository,
-      useClass: ContactInMemoryRepository,
+      useClass: ContactPrismaRepository,
     },
   ],
 })

@@ -5,8 +5,13 @@ import { CreateContactDto } from '../../dto/create-contact.dto';
 import { UpdateContactDto } from '../../dto/update-contact.dto';
 import { Contact } from '../../entities/contact.entity';
 import { ContactRepository } from '../contacts.repositories';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class ContactInMemoryRepository implements ContactRepository {
+  findByEmail(email: string): Contact | Promise<Contact> {
+    throw new Error('Method not implemented.');
+  }
     create(data: CreateContactDto): Contact | Promise<Contact> {
         const newContacts = new Contact()
         Object.assign(newContacts,{

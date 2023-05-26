@@ -1,5 +1,5 @@
 import { Exclude } from 'class-transformer';
-import { randomUUID } from 'crypto';
+import { randomUUID } from 'node:crypto';
 
 export class Client {
   readonly id: string;

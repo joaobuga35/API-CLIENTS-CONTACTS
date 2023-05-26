@@ -7,6 +7,7 @@ export class Contact {
   number: string;
   image: string | null;
   readonly createdAt: string;
+  clientId?: string;
 
   constructor() {
     this.id = randomUUID();
