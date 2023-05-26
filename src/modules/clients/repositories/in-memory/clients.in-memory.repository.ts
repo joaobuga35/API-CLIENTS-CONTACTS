@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {plainToInstance} from 'class-transformer'
 import { clients } from 'src/database/db';
 import { CreateClientDto } from '../../dto/create-client.dto';
