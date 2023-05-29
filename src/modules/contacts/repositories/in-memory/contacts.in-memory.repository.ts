@@ -12,10 +12,11 @@ export class ContactInMemoryRepository implements ContactRepository {
   findByEmail(email: string): Contact | Promise<Contact> {
     throw new Error('Method not implemented.');
   }
-    create(data: CreateContactDto): Contact | Promise<Contact> {
+    create(data: CreateContactDto, clientId: string): Contact | Promise<Contact> {
         const newContacts = new Contact()
         Object.assign(newContacts,{
           ...data,
+          clientId: clientId,
           image: data.image || null,
         })
     

@@ -23,11 +23,11 @@ export class AuthService {
     return null;
   }
 
-  async login(client: Client) {
-    const payload = { email: client.email, id: client.id };
-
+   async login(email: string) {
+    const client = await this.clientsService.findByEmail(email)
+    
     return {
-      token: this.jwtService.sign(payload),
+      token: this.jwtService.sign({ email }, { subject: client.id }),
     };
   }
 }
