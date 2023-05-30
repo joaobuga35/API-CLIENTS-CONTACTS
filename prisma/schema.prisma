@@ -15,7 +15,7 @@ model Client {
   name      String
   password  String
   email     String  @unique
-  number    String
+  phone    String
   createdAt String
   contacts  Contact[]
 
@@ -26,7 +26,7 @@ model Contact {
   id        String @id
   name      String
   email     String @unique
-  number    String
+  phone    String @unique
   image     String?
   createdAt String
   client    Client @relation(fields: [clientId], references: [id])

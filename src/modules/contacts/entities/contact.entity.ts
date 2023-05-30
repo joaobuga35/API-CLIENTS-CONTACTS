@@ -4,7 +4,7 @@ export class Contact {
   readonly id: string;
   name: string;
   email: string;
-  number: string;
+  phone: string;
   image: string | null;
   readonly createdAt: string;
   clientId?: string;
