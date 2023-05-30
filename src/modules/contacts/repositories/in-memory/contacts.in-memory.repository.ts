@@ -9,6 +9,9 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ContactInMemoryRepository implements ContactRepository {
+  findByPhoneNumber(phone: string): Contact | Promise<Contact> {
+    throw new Error('Method not implemented.');
+  }
   findByEmail(email: string): Contact | Promise<Contact> {
     throw new Error('Method not implemented.');
   }
