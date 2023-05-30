@@ -9,7 +9,7 @@ export class Client {
   password: string;
 
   email: string;
-  number: string;
+  phone: string;
   readonly createdAt: string;
 
   constructor() {

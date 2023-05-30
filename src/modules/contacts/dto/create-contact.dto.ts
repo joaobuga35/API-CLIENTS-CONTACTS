@@ -39,7 +39,7 @@ export class CreateContactDto {
   @IsNotEmpty()
   @MinLength(6)
   @MaxLength(15)
-  number: string;
+  phone: string;
 
   @IsString()
   @IsOptional()

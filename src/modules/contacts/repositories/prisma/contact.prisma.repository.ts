@@ -22,7 +22,7 @@ export class ContactPrismaRepository implements ContactRepository {
             id: contact.id,
             name: contact.name,
             email: contact.email,
-            number: contact.number,
+            phone: contact.phone,
             image: contact.image,
             createdAt: contact.createdAt,
             clientId,

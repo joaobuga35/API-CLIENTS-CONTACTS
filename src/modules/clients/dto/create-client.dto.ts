@@ -47,5 +47,5 @@ export class CreateClientDto {
   @IsNotEmpty()
   @MinLength(6)
   @MaxLength(15)
-  number: string;
+  phone: string;
 }
