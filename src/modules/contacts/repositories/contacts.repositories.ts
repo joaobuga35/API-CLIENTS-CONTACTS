@@ -8,6 +8,7 @@ export abstract class ContactRepository {
   abstract findAll(): Promise<Contact[]> | Contact[];
   abstract findOne(id: string): Promise<Contact> | Contact;
   abstract findByEmail(email: string): Promise<Contact> | Contact
+  abstract findByPhoneNumber(phone: string): Promise<Contact> | Contact
   abstract update(id: string, data: UpdateContactDto): Promise<Contact> | Contact;
   abstract delete(id: string): Promise<void> | void;
 }
