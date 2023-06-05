@@ -38,4 +38,4 @@ $ npm run start:prod
   $ npm run start
   ```
  
-  Depois acesse o link: http://localhost:3000/api
+  Depois acesse o link: http://localhost:3001/api
