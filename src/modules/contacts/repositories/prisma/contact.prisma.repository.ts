@@ -31,8 +31,12 @@ export class ContactPrismaRepository implements ContactRepository {
     
         return plainToInstance(Contact, newContact);
       }
-      async findAll(): Promise<Contact[]> {
-        const allContacts = await this.prisma.contact.findMany();
+      async findAll(clientId: string): Promise<Contact[]> {
+        const allContacts = await this.prisma.contact.findMany({
+          where: {
+            clientId: clientId
+          }
+        });
     
         return plainToInstance(Contact, allContacts);
       }
@@ -48,7 +52,7 @@ export class ContactPrismaRepository implements ContactRepository {
       async findByEmail(email: string): Promise<Contact> {
         const contact = await this.prisma.contact.findUnique({
           where: {
-            email: email
+            email: email,
           }
         })
         return contact

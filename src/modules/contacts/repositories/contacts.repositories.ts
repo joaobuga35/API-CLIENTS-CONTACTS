@@ -5,7 +5,7 @@ import { Contact } from '../entities/contact.entity';
 
 export abstract class ContactRepository {
   abstract create(data: CreateContactDto, clientId: string): Promise<Contact> | Contact;
-  abstract findAll(): Promise<Contact[]> | Contact[];
+  abstract findAll(clientId: string): Promise<Contact[]> | Contact[];
   abstract findOne(id: string): Promise<Contact> | Contact;
   abstract findByEmail(email: string): Promise<Contact> | Contact
   abstract findByPhoneNumber(phone: string): Promise<Contact> | Contact
