@@ -22,6 +22,9 @@ $ npm install
 ## Rodar aplicação localmente
 
 ```bash
+#migrate
+$ npx prisma migrate dev
+
 # development
 $ npm run start
 
