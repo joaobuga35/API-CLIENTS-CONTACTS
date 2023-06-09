@@ -29,6 +29,8 @@ export class ContactsController {
   }
 
   @Get()
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
   findAll(@Request() req) {
     return this.contactsService.findAll(req.user.id);
   }

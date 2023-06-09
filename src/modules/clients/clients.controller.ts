@@ -26,8 +26,6 @@ export class ClientsController {
   }
 
   @Get()
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
   async findAll() {
     return await this.clientsService.findAll();
   }
