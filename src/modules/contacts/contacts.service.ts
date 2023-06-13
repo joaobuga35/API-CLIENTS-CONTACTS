@@ -35,18 +35,20 @@ export class ContactsService {
     return contact;
   }
 
-  async update(id: string, updateContactDto: UpdateContactDto) {
+  async update(id: string, updateContactDto: UpdateContactDto, clientId: string) {
     const contact = await this.contactRepository.findOne(id);
-    // if (updateContactDto.email) {
-    //   const contactEmail = await this.contactRepository.findByEmail(updateContactDto.email)
-    //   if (contactEmail) {
-    //     throw new ConflictException('Email already exists!')
-    //   }
-    // }
+    const contactData = await this.contactRepository.findAll(clientId)
+
+    if (updateContactDto.email) {
+      const verifyEmail = contactData.some((elem) => elem.email === updateContactDto.email)
+      if (verifyEmail) {
+        throw new ConflictException('Email already exists!')
+      }
+    }
 
     if (updateContactDto.phone) {
-      const contactPhone = await this.contactRepository.findByPhoneNumber(updateContactDto.phone)
-      if (contactPhone) {
+      const verifyPhone = contactData.some((elem) => elem.phone === updateContactDto.phone)
+      if (verifyPhone) {
         throw new ConflictException('Phone already exists!')
       }
     }
@@ -54,7 +56,7 @@ export class ContactsService {
     if (!contact) {
       throw new NotFoundException('Contact not found!');
     }
-    return await this.contactRepository.update(id, updateContactDto);
+    return await this.contactRepository.update(id, updateContactDto, clientId);
   }
 
   async remove(id: string) {

@@ -45,8 +45,8 @@ export class ContactsController {
   @Patch(':id')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
-  update(@Param('id') id: string, @Body() updateContactDto: UpdateContactDto) {
-    return this.contactsService.update(id, updateContactDto);
+  update(@Param('id') id: string, @Body() updateContactDto: UpdateContactDto, @Request() req) {
+    return this.contactsService.update(id, updateContactDto, req.user.id);
   }
 
   @HttpCode(204)
