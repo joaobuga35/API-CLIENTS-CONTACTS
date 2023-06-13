@@ -7,14 +7,15 @@ import { ContactRepository } from './repositories/contacts.repositories';
 export class ContactsService {
   constructor(private contactRepository: ContactRepository) {}
   async create(createContactDto: CreateContactDto, clientId: string) {
-    const contactEmail = await this.contactRepository.findByEmail(createContactDto.email)
-    const contactPhone = await this.contactRepository.findByPhoneNumber(createContactDto.phone)
+    const contactData = await this.contactRepository.findAll(clientId)
+    const verifyEmail = contactData.some((elem) => elem.email === createContactDto.email)
+    const verifyPhone = contactData.some((elem) => elem.phone === createContactDto.phone)
 
-    if (contactEmail) {
+    if (verifyEmail) {
       throw new ConflictException('Email already exists!')
     }
 
-    if (contactPhone) {
+    if (verifyPhone) {
       throw new ConflictException('Phone already exists!')
     }
     const contact = await this.contactRepository.create(createContactDto, clientId);
@@ -34,18 +35,20 @@ export class ContactsService {
     return contact;
   }
 
-  async update(id: string, updateContactDto: UpdateContactDto) {
+  async update(id: string, updateContactDto: UpdateContactDto, clientId: string) {
     const contact = await this.contactRepository.findOne(id);
+    const contactData = await this.contactRepository.findAll(clientId)
+
     if (updateContactDto.email) {
-      const contactEmail = await this.contactRepository.findByEmail(updateContactDto.email)
-      if (contactEmail) {
+      const verifyEmail = contactData.some((elem) => elem.email === updateContactDto.email)
+      if (verifyEmail) {
         throw new ConflictException('Email already exists!')
       }
     }
 
     if (updateContactDto.phone) {
-      const contactPhone = await this.contactRepository.findByPhoneNumber(updateContactDto.phone)
-      if (contactPhone) {
+      const verifyPhone = contactData.some((elem) => elem.phone === updateContactDto.phone)
+      if (verifyPhone) {
         throw new ConflictException('Phone already exists!')
       }
     }
@@ -53,7 +56,7 @@ export class ContactsService {
     if (!contact) {
       throw new NotFoundException('Contact not found!');
     }
-    return await this.contactRepository.update(id, updateContactDto);
+    return await this.contactRepository.update(id, updateContactDto, clientId);
   }
 
   async remove(id: string) {
