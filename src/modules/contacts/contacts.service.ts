@@ -7,14 +7,15 @@ import { ContactRepository } from './repositories/contacts.repositories';
 export class ContactsService {
   constructor(private contactRepository: ContactRepository) {}
   async create(createContactDto: CreateContactDto, clientId: string) {
-    const contactEmail = await this.contactRepository.findByEmail(createContactDto.email)
-    const contactPhone = await this.contactRepository.findByPhoneNumber(createContactDto.phone)
-
-    if (contactEmail) {
+    const contactData = await this.contactRepository.findAll(clientId)
+    const verifyEmail = contactData.every((elem) => elem.email === createContactDto.email)
+    const verifyPhone = contactData.every((elem) => elem.phone === createContactDto.phone)
+    
+    if (verifyEmail) {
       throw new ConflictException('Email already exists!')
     }
 
-    if (contactPhone) {
+    if (verifyPhone) {
       throw new ConflictException('Phone already exists!')
     }
     const contact = await this.contactRepository.create(createContactDto, clientId);
