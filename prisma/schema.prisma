@@ -25,7 +25,7 @@ model Client {
 model Contact {
   id        String @id
   name      String
-  email     String @unique
+  email     String 
   phone    String @unique
   image     String?
   createdAt String

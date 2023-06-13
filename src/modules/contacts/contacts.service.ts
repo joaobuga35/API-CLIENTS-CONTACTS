@@ -8,9 +8,9 @@ export class ContactsService {
   constructor(private contactRepository: ContactRepository) {}
   async create(createContactDto: CreateContactDto, clientId: string) {
     const contactData = await this.contactRepository.findAll(clientId)
-    const verifyEmail = contactData.every((elem) => elem.email === createContactDto.email)
-    const verifyPhone = contactData.every((elem) => elem.phone === createContactDto.phone)
-    
+    const verifyEmail = contactData.some((elem) => elem.email === createContactDto.email)
+    const verifyPhone = contactData.some((elem) => elem.phone === createContactDto.phone)
+
     if (verifyEmail) {
       throw new ConflictException('Email already exists!')
     }
@@ -37,12 +37,12 @@ export class ContactsService {
 
   async update(id: string, updateContactDto: UpdateContactDto) {
     const contact = await this.contactRepository.findOne(id);
-    if (updateContactDto.email) {
-      const contactEmail = await this.contactRepository.findByEmail(updateContactDto.email)
-      if (contactEmail) {
-        throw new ConflictException('Email already exists!')
-      }
-    }
+    // if (updateContactDto.email) {
+    //   const contactEmail = await this.contactRepository.findByEmail(updateContactDto.email)
+    //   if (contactEmail) {
+    //     throw new ConflictException('Email already exists!')
+    //   }
+    // }
 
     if (updateContactDto.phone) {
       const contactPhone = await this.contactRepository.findByPhoneNumber(updateContactDto.phone)
