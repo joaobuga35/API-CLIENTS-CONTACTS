@@ -49,7 +49,7 @@ export class ContactPrismaRepository implements ContactRepository {
     
         return plainToInstance(Contact, contact);
       }
-      async update(id: string, data: UpdateContactDto, clientId:string): Promise<Contact> {
+      async update(id: string, data: UpdateContactDto): Promise<Contact> {
         const newContact = await this.prisma.contact.update({
           where: {
             id: id,
