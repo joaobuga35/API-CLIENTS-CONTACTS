@@ -24,6 +24,8 @@ $ npm install
 ```bash
 #migrate
 $ npx prisma migrate dev
+#generate
+$ npx prisma generate
 
 # development
 $ npm run start
@@ -36,9 +38,9 @@ $ npm run start:prod
 ```
 
 ## Documentação 
-  Primeiro rode o servidor. 
-  ```bash
-  $ npm run start
-  ```
- 
-  Depois acesse o link: http://localhost:3001/api
+Acesse o link: https://project-full-stack-jj.onrender.com/api
+A documentação da API também pode ser importada para o Insomnia utilizando o arquivo JSON fornecido. O arquivo está localizado em insomnia.json. Importe o arquivo JSON para o Insomnia para obter a documentação completa das rotas e endpoints da API.
+
+O back-end estará disponível na porta 3001.
+
+Agora você pode acessar o projeto em seu navegador em http://localhost:3000 (para o client) e http://localhost:3001 (para o servidor), respectivamente.
