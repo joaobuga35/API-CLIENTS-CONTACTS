@@ -10,6 +10,15 @@
 
 API voltada para o cadastro de clientes e seus possíveis contatos. Podendo ser utilizada em qualquer modelo de negócio com rede de contatos. 
 
+## Tecnologias utilizadas
+- NestJS
+- Typescript
+- Prisma
+- Class validator
+- Bcrypt
+- JWT
+- PostgreSQL
+
 ## Instalação
 
 ```bash
