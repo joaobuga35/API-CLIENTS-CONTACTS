@@ -18,6 +18,7 @@ API voltada para o cadastro de clientes e seus possíveis contatos. Podendo ser 
 - Bcrypt
 - JWT
 - PostgreSQL
+- Zod
 
 ## Instalação
 
